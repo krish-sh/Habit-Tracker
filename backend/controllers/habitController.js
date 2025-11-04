@@ -1,13 +1,13 @@
-import habitModel from "../models/Habitmodels";
+import habitModel from "../models/Habitmodels.js";
 
 const addHabit = async (req, res) => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user?.userId;
 
     const { name, description, frequency } = req.body;
 
     if (!name || !frequency) {
-      return res.status(401).josn({
+      return res.status(401).json({
         success: false,
         message: "All fields are required",
       });
@@ -16,7 +16,6 @@ const addHabit = async (req, res) => {
     const currentDate = new Date().toISOString();
     const newLogsEntry = { date: currentDate, completed: false };
     const logs = [newLogsEntry];
-
     const newHabit = new habitModel({
       userId,
       name,
@@ -26,7 +25,6 @@ const addHabit = async (req, res) => {
     });
 
     const savedHabit = await newHabit.save();
-
     res.status(201).json({
       success: true,
       message: "Habit adding successfully",
@@ -69,7 +67,7 @@ const deleteHabit = async (req, res) => {
 
 const getHabit = async (req, res) => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user?.userId;
 
     if (!userId) {
       res.status(404).json({
@@ -78,7 +76,7 @@ const getHabit = async (req, res) => {
       });
     }
 
-    const habits = await habitModel.find(userId).exec();
+    const habits = await habitModel.find({ userId }).exec();
 
     if (habits.length < 0 || habits.length === 0) {
       res.status(401).json({
@@ -101,10 +99,10 @@ const getHabit = async (req, res) => {
   }
 };
 
-const editHbaits = async (req, res) => {
+const editHabits = async (req, res) => {
   try {
-    const habitId = req.params;
-    const userId = req.user?.id;
+    const habitId = req.params.id;
+    const userId = req.user?.userId;
     const { name, description, frequency, logs } = req.body;
 
     const habit = await habitModel.findByIdAndUpdate(
@@ -130,7 +128,7 @@ const editHbaits = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal edit habit error",
-      edit,
+      error,
     });
   }
 };
@@ -182,4 +180,4 @@ const markCompleted = async (req, res) => {
   }
 };
 
-export { addHabit, deleteHabit, getHabit, editHbaits, markCompleted };
+export { addHabit, deleteHabit, getHabit, editHabits, markCompleted };
