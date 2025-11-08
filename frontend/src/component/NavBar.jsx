@@ -1,9 +1,53 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { HabitContext } from "../context/HabitContext";
+import { useNavigate } from "react-router-dom";
+import cookie from "js-cookie";
 
 function NavBar() {
+  const { token, setToken } = useContext(HabitContext);
+
+  const navigate = useNavigate();
   return (
-    <div>NavBar</div>
-  )
+    <div className="flex flex-col md:flex-row justify-between items-center p-4 bg-[#5D866C]">
+      <div className="flex items-center">
+        <img
+          src=""
+          onClick={() => navigate("/")}
+          className="w-44 cursor-pointer"
+          alt="logo"
+        />
+      </div>
+      <div className="felx flex-col md:flex-row items-baseline justify-center space-y-3 md:space-y-3 mt-4 md:mt-0">
+        {token ? (
+          <button
+            onClick={() => {
+              cookie.remove("token");
+              setToken(false);
+              navigate("/Login");
+            }}
+            className="bg-[#5D866C] py-2 px-4 rounded-lg text-white font-semibold hover:bg-white hover:text-[#5D866C] transform duration-500"
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-[#5D866C] py-2 px-4 rounded-lg text-white font-semibold hover:bg-white hover:text-[#5D866C]  duration-500"
+            >
+              Login
+            </button>
+            <button
+              onClick={() => navigate("/register")}
+              className="bg-white py-2 px-4 rounded-lg border border-[#5D866C] text-[#5D866C] font-semibold hover:bg-[#5D866C] hover:text-white  duration-500"
+            >
+              SignUp
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default NavBar
+export default NavBar;
