@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function HabitAnyalstic() {
-  return (
-    <div>HabitAnyalstic</div>
-  )
+function HabitAnyalstic({ habits, selectedDate }) {
+  return <div>HabitAnyalstic</div>;
 }
 
-export default HabitAnyalstic
+export default HabitAnyalstic;
