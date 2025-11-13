@@ -4,10 +4,10 @@ import { Toaster } from "react-hot-toast";
 import NavBar from "./component/NavBar";
 import { HabitContext } from "./context/HabitContext";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Habits from "./component/Habits";
-import Landing from "./pages/Landing";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Habits from "./component/Habits.jsx";
+import Landing from "./pages/Landing.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
 
 function App() {
   const token = useContext(HabitContext);
