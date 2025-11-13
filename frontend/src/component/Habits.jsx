@@ -3,6 +3,7 @@ import { HabitContext } from "../context/HabitContext";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import toast from "react-hot-toast";
+import HabitAnyalstic from "./HabitAnyalstic";
 
 const Habits = () => {
   const { habitData, markCompleted, fetchHabits, deleteHabits, editHabits } =
@@ -193,7 +194,7 @@ const Habits = () => {
             ))}
           </div>
         </div>
-        <HabitAnalystics habits={habitData} selectedDate={selectedDate} />
+        <HabitAnyalstic habits={habitData} selectedDate={selectedDate} />
       </div>
     </div>
   );
