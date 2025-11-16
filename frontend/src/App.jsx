@@ -10,7 +10,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 
 function App() {
-  const token = useContext(HabitContext);
+  const { token } = useContext(HabitContext);
 
   return (
     <>

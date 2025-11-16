@@ -8,7 +8,7 @@ function NavBar() {
 
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center p-4 bg-[#5D866C]">
+    <div className="flex flex-col md:flex-row justify-between items-center p-4 bg-[#901E3E]">
       <div className="flex items-center">
         <img
           src=""
@@ -25,7 +25,7 @@ function NavBar() {
               setToken(false);
               navigate("/Login");
             }}
-            className="bg-[#5D866C] py-2 px-4 rounded-lg text-white font-semibold hover:bg-white hover:text-[#5D866C] transform duration-500"
+            className="bg-[#901E3E] py-2 px-4 rounded-lg text-white font-semibold hover:bg-white hover:text-[#901E3E] transform duration-500"
           >
             Logout
           </button>
@@ -33,13 +33,13 @@ function NavBar() {
           <>
             <button
               onClick={() => navigate("/login")}
-              className="bg-[#5D866C] py-2 px-4 rounded-lg text-white font-semibold hover:bg-white hover:text-[#5D866C]  duration-500"
+              className="bg-[#901E3E] py-2 px-4 rounded-lg text-white font-semibold   duration-500"
             >
               Login
             </button>
             <button
               onClick={() => navigate("/register")}
-              className="bg-white py-2 px-4 rounded-lg border border-[#5D866C] text-[#5D866C] font-semibold hover:bg-[#5D866C] hover:text-white  duration-500"
+              className="bg-white py-2 px-4 rounded-lg border border-[#7b0a2a96] text-[#901E3E] font-semibold hover:bg-[#901E3E] hover:text-white  duration-500"
             >
               SignUp
             </button>

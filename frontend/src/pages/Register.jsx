@@ -6,20 +6,25 @@ import { useNavigate } from "react-router-dom";
 export default function Register() {
   const { handleRegister } = useContext(HabitContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const res = await handleRegister(formData);
+    const res = await handleRegister(
+      formData.username,
+      formData.email,
+      formData.password
+    );
     if (res?.success) {
       toast.success("user Signup Successfully");
       navigate("/login");
     } else {
-      toast.error("Already have a account ");
+      toast.error("Error in Signup account ");
     }
   };
 
@@ -30,13 +35,15 @@ export default function Register() {
 
         <form onSubmit={handleSignup} className="space-y-6">
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Username</label>
+            <label className="block text-gray-700 font-medium mb-2">
+              Username
+            </label>
             <input
               type="text"
               placeholder="Enter username"
-              value={formData.name}
+              value={formData.username}
               onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
+                setFormData({ ...formData, username: e.target.value })
               }
               className="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:bg-white outline-none"
               required

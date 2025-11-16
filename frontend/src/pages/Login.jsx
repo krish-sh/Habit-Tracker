@@ -8,17 +8,28 @@ export default function Login() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmiit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const res = await handleLogin(formData);
-    if (res?.success) {
-      toast.success("Login successfully");
-      navigate("/");
-    } else {
-      toast.error("Invalid credantials");
+    try {
+      console.log("list1");
+
+      const res = await handleLogin(formData.email, formData.password);
+
+      if (res?.success) {
+        toast.success("Login successfully");
+        navigate("/Habits");
+      } else {
+        toast.error(res?.data?.message || "Invalid credentials");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Login failed");
     }
+
+    setLoading(false);
   };
 
   return (

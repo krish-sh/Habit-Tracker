@@ -96,11 +96,11 @@ const login = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.cookie(token, {
-      httpOnly: true,
-      secure: true,
+    res.cookie("token", token, {
+      httpOnly: false,
+      secure: false,
       sameSite: "lax",
-      maxAge: 7 * 34 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     const userResponse = {

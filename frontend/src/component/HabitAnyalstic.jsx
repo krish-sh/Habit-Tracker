@@ -1,7 +1,7 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-function HabitAnyalstic({ habits, selectedDate }) {
+function HabitAnyalstic({ habits = [], selectedDate }) {
   const today = new Date().toISOString().split("T")[0];
   const yesterday = new Date(
     new Date(selectedDate)
@@ -16,7 +16,7 @@ function HabitAnyalstic({ habits, selectedDate }) {
   ).length;
 
   const completedYesterday = habits.filter((habit) =>
-    habit.log.some((log) => log.date === yesterday && log.completed)
+    habit.logs.some((log) => log.date === yesterday && log.completed)
   ).length;
 
   const progressToday = totalHabit ? (completedToday / totalHabit) * 100 : 0;

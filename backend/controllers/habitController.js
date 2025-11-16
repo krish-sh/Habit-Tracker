@@ -142,14 +142,14 @@ const markCompleted = async (req, res) => {
       { _id: habitId },
       {
         $set: {
-          "logs.${log}.completed": true,
+          "logs.$[log].completed": true,
         },
       },
       { new: true, arrayFilters: [{ "log.date": today }] }
     );
 
     if (!updatedHabit) {
-      return res.status(404).josn({
+      return res.status(404).json({
         success: false,
         message: "Habit not Found ",
       });
@@ -157,7 +157,7 @@ const markCompleted = async (req, res) => {
 
     // if logs array doesn't contain todays date, we need to add it
     if (!updatedHabit.logs.find((log) => log.date === today)) {
-      updatedHabit.log.push({
+      updatedHabit.logs.push({
         date: today,
         completed: true,
       });
@@ -175,7 +175,6 @@ const markCompleted = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal completed habit error",
-      edit,
     });
   }
 };
