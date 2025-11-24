@@ -12,7 +12,7 @@ const HabitContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [habitData, setHabitData] = useState([]);
 
-  const backendURL = "http://localhost:3000";
+  const backendURL = "https://habit-tracker-7j70.onrender.com";
 
   const getAuthToken = () => Cookie.get("token");
 
