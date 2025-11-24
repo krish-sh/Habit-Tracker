@@ -53,6 +53,7 @@ const HabitContextProvider = ({ children }) => {
 
   const handleRegister = async (username, email, password) => {
     try {
+
       const { data } = await axios.post(
         `${backendURL}/api/user/register`,
         { username, email, password },
@@ -63,9 +64,10 @@ const HabitContextProvider = ({ children }) => {
           withCredentials: true,
         }
       );
+      
 
       if (data.success) {
-        localStorage.setItem("token");
+        localStorage.setItem("token", data.token);
 
         setToken(data.token);
         setHabitData(data.data || []);
